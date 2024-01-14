@@ -5,45 +5,115 @@
   <body>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <form action="{% url 'result' %}">
-      {% csrf_token %}
-
+    <form id="ml_form" method="POST">
     <div class="container">
-        <h1 style="color:#478448">Предсказание стоимости книги</h1>
-      <p>Издание (тип переплета):</p>
-      <input type="text" name="edition">
+        <h1 style="color:#478448">Предсказание</h1>
+      <p>:</p>
+      <input type="number" name="Age">
       <br>
-
-      <p>Отзывы:</p>
-      <input type="text" name="reviews">
+      <p>:</p>
+      <input type="text" name="BusinessTravel">
       <br>
-
-      <p>Рейтинги:</p>
-      <input type="text" name="ratings">
+      <p>:</p>
+      <input type="number" name="DistanceFromHome">
       <br>
-
-      <p>Год издания:</p>
-      <input type="text" name="year">
+      <p>:</p>
+      <input type="text" name="Education">
+      <br>
+      <p>:</p>
+      <input type="number" name="EnvironmentSatisfaction">
+      <br>
+      <p>:</p>
+      <input type="number" name="JobInvolvement">
+      <br>
+      <p>:</p>
+      <input type="number" name="JobLevel">
+      <br>
+      <p>:</p>
+      <input type="number" name="JobSatisfaction">
+      <br>
+      <p>:</p>
+      <input type="number" name="MonthlyIncome">
+      <br>
+      <p>:</p>
+      <input type="number" name="NumCompaniesWorked">
+      <br>
+      <p>:</p>
+      <input type="text" name="OverTime">
+      <br>
+      <p>:</p>
+      <input type="number" name="RelationshipSatisfaction">
+      <br>
+      <p>:</p>
+      <input type="number" name="StockOptionLevel">
+      <br>
+      <p>:</p>
+      <input type="number" name="TotalWorkingYears">
+      <br>
+      <p>:</p>
+      <input type="number" name="TrainingTimesLastYear">
+      <br>
+      <p>:</p>
+      <input type="number" name="WorkLifeBalance">
+      <br>
+      <p>:</p>
+      <input type="number" name="YearsAtCompany">
+      <br>
+      <p>:</p>
+      <input type="number" name="YearsSinceLastPromotion">
+      <br>
+      <p>:</p>
+      <input type="text" name="Department">
+      <br>
+      <p>:</p>
+      <input type="text" name="EducationField">
+      <br>
+      <p>:</p>
+      <input type="text" name="Gender">
+      <br>
+      <p>:</p>
+      <input type="text" name="JobRole">
+      <br>
+      <p>:</p>
+      <input type="text" name="MaritalStatus">
       <br>
 
       <button type="submit" value="Predict">Предсказать стоимость</button>
     </div>
     </form>
-
+    <div id="alert" style="display:none;"></div>
   </body>
-<script>
-    async function request(url, data, csrftoken) {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': csrftoken,
-            },
-            body: JSON.stringify(data),
-        })
-        return await response.text()
-    }
-</script>
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+      </script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+      </script>
+   <script>
+   $(document).ready(function () {
+          $('#ml_form').submit(function () {
+              let form = $(this)
+              let data = {
+              }
+              $.ajax({
+                  data: JSON.stringify(data),
+                  contentType: "application/json",
+                  url: "{% url 'result' %}",
+                  type: 'POST',
+                  dataType: 'json',
+                  success: function (response) {
+                        console.log('ok')
+                  },
+              });
+              return false;
+          });
+      })
+  </script>
+{% endblock scripts %}
+
 
 <style>
 /* Bordered form */

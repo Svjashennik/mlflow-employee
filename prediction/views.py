@@ -1,6 +1,5 @@
 from json import loads
 
-from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -8,9 +7,8 @@ import pickle
 import pandas as pd
 import sklearn
 from django.views.decorators.csrf import csrf_exempt
-from sklearn.preprocessing import OrdinalEncoder
 
-# from category_encoders import OrdinalEncoder
+from category_encoders import OrdinalEncoder
 
 DEPARTMENT = {'Sales': 0, 'Research & Development': 1, 'Human Resources': 2, 'Other': 3}
 EDUCATION = {
@@ -59,7 +57,7 @@ def fit_oe(data, maplist):
 
 
 def set_data(data):
-    df = pd.DataFrame(data)
+    df = pd.DataFrame.from_dict(data)
     # Доп параметры на основе полученных данных
     df['MonthlyIncome/Age'] = df['MonthlyIncome'] / df['Age']
     df["Age_risk"] = (df["Age"] < 34).astype(int)
