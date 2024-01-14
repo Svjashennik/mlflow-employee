@@ -1,0 +1,18 @@
+
+version: '3'
+
+services:
+
+  gunicorn:
+      build: .
+      container_name: 'gunicorn'
+      restart: always
+      command: /bin/sh -c "python3 -m gunicorn -b 0.0.0.0:80 mlflow_employee.wsgi --reload"
+      volumes:
+        - .:/app
+      ports:
+        - 80:80
+      environment:
+        - DJANGO_SUPERUSER_USERNAME=admin
+        - DJANGO_SUPERUSER_PASSWORD=admin
+        - DJANGO_SUPERUSER_EMAIL=admin@example.com
