@@ -18,8 +18,10 @@ services:
         - DJANGO_SUPERUSER_EMAIL=admin@example.com
 
   mlflow-server:
-    build:
-      dockerfile: ./MLFlowServer.dockerfile
+    restart: always
+    build: ./mlflow
+    image: mlflow_server
+    container_name: mlflow_server
     volumes:
       - ./MLFlowRegistry:/MLFlowRegistry
     working_dir: /
