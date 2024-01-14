@@ -1,5 +1,6 @@
 from json import loads
 
+from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -47,7 +48,8 @@ MAP_EDUCATION = [
 
 def fill_dummies(x, enum, key):
     res = [0 for _ in range(len(enum))]
-    res[enum[x[key]]] = 1
+    if x[key] in enum:
+        res[enum[x[key]]] = 1
     return pd.Series(res)
 
 
@@ -57,7 +59,7 @@ def fit_oe(data, maplist):
 
 
 def set_data(data):
-    df = pd.DataFrame.from_dict(data)
+    df = pd.DataFrame([data])
     # Доп параметры на основе полученных данных
     df['MonthlyIncome/Age'] = df['MonthlyIncome'] / df['Age']
     df["Age_risk"] = (df["Age"] < 34).astype(int)
@@ -154,15 +156,42 @@ def set_data(data):
 
 def get_prediction(data):
     df = set_data(data)
-    with open('prediction/model_grb.pkl', 'rb') as f:
+    with open('prediction/model_gbc.pkl', 'rb') as f:
         model = pickle.load(f)
         prediction = model.predict(df)
-    return prediction[0]
+    return int(prediction[0])
+
+
+def validate_data(data):
+    for int_key in [
+        "Age",
+        "DistanceFromHome",
+        "EnvironmentSatisfaction",
+        "JobInvolvement",
+        "JobLevel",
+        "JobSatisfaction",
+        "MonthlyIncome",
+        "NumCompaniesWorked",
+        "RelationshipSatisfaction",
+        "StockOptionLevel",
+        "TotalWorkingYears",
+        "TrainingTimesLastYear",
+        "WorkLifeBalance",
+        "YearsAtCompany",
+        "YearsSinceLastPromotion",
+    ]:
+        try:
+            data[int_key] = int(data[int_key])
+        except ValueError:
+            raise ValidationError('Wrong int')
 
 
 @csrf_exempt
 def post_result(request):
-    res = get_prediction(loads(request.body))
+    data = loads(request.body)
+    validate_data(data)
+    res = get_prediction(data)
+    res = get_prediction(data)
     return JsonResponse({'prediction': res})
 
 

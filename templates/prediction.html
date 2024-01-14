@@ -8,80 +8,80 @@
     <form id="ml_form" method="POST">
     <div class="container">
         <h1 style="color:#478448">Предсказание</h1>
-      <p>:</p>
-      <input type="number" name="Age">
+      <p>Возраст:</p>
+      <input type="number" id="Age">
       <br>
       <p>:</p>
-      <input type="text" name="BusinessTravel">
+      <input type="text" id="BusinessTravel">
+      <br>
+      <p>Дистанция до дома:</p>
+      <input type="number" id="DistanceFromHome">
+      <br>
+      <p>Образование:</p>
+      <input type="text" id="Education">
+      <br>
+      <p>Удовлетворенность окружением:</p>
+      <input type="number" id="EnvironmentSatisfaction">
+      <br>
+      <p>Вовлечение в работу:</p>
+      <input type="number" id="JobInvolvement">
+      <br>
+      <p>Уровень работы:</p>
+      <input type="number" id="JobLevel">
+      <br>
+      <p>Удовлетвореность работой:</p>
+      <input type="number" id="JobSatisfaction">
+      <br>
+      <p>Зарплата:</p>
+      <input type="number" id="MonthlyIncome">
+      <br>
+      <p>Количество мест работы:</p>
+      <input type="number" id="NumCompaniesWorked">
+      <br>
+      <p>Переработки:</p>
+      <input type="text" id="OverTime">
+      <br>
+      <p>Удовлетворенность отношениями:</p>
+      <input type="number" id="RelationshipSatisfaction">
       <br>
       <p>:</p>
-      <input type="number" name="DistanceFromHome">
+      <input type="number" id="StockOptionLevel">
+      <br>
+      <p>Общий Стаж:</p>
+      <input type="number" id="TotalWorkingYears">
       <br>
       <p>:</p>
-      <input type="text" name="Education">
+      <input type="number" id="TrainingTimesLastYear">
       <br>
       <p>:</p>
-      <input type="number" name="EnvironmentSatisfaction">
+      <input type="number" id="WorkLifeBalance">
       <br>
-      <p>:</p>
-      <input type="number" name="JobInvolvement">
+      <p>Лет в компании:</p>
+      <input type="number" id="YearsAtCompany">
       <br>
-      <p>:</p>
-      <input type="number" name="JobLevel">
+      <p>Лет с последнего повышения:</p>
+      <input type="number" id="YearsSinceLastPromotion">
       <br>
-      <p>:</p>
-      <input type="number" name="JobSatisfaction">
+      <p>Департамент:</p>
+      <input type="text" id="Department">
       <br>
-      <p>:</p>
-      <input type="number" name="MonthlyIncome">
+      <p>Область образования:</p>
+      <input type="text" id="EducationField">
       <br>
-      <p>:</p>
-      <input type="number" name="NumCompaniesWorked">
+      <p>Пол:</p>
+      <input type="text" id="Gender">
       <br>
-      <p>:</p>
-      <input type="text" name="OverTime">
+      <p>Должность:</p>
+      <input type="text" id="JobRole">
       <br>
-      <p>:</p>
-      <input type="number" name="RelationshipSatisfaction">
-      <br>
-      <p>:</p>
-      <input type="number" name="StockOptionLevel">
-      <br>
-      <p>:</p>
-      <input type="number" name="TotalWorkingYears">
-      <br>
-      <p>:</p>
-      <input type="number" name="TrainingTimesLastYear">
-      <br>
-      <p>:</p>
-      <input type="number" name="WorkLifeBalance">
-      <br>
-      <p>:</p>
-      <input type="number" name="YearsAtCompany">
-      <br>
-      <p>:</p>
-      <input type="number" name="YearsSinceLastPromotion">
-      <br>
-      <p>:</p>
-      <input type="text" name="Department">
-      <br>
-      <p>:</p>
-      <input type="text" name="EducationField">
-      <br>
-      <p>:</p>
-      <input type="text" name="Gender">
-      <br>
-      <p>:</p>
-      <input type="text" name="JobRole">
-      <br>
-      <p>:</p>
-      <input type="text" name="MaritalStatus">
+      <p>Женатность:</p>
+      <input type="text" id="MaritalStatus">
       <br>
 
-      <button type="submit" value="Predict">Предсказать стоимость</button>
+      <button type="submit" value="Predict">Предсказать увольнение</button>
     </div>
     </form>
-    <div id="alert" style="display:none;"></div>
+    <div class="container" id="alert" style="display:none;"></div>
   </body>
 
     {% block scripts %}
@@ -94,10 +94,22 @@
       </script>
    <script>
    $(document).ready(function () {
-          $('#ml_form').submit(function () {
+          $('#ml_form').submit(function (e) {
+              e.stopImmediatePropagation()
               let form = $(this)
               let data = {
-              }
+            'Age':$("#Age").val(), 'BusinessTravel':$("#BusinessTravel").val(), 'DistanceFromHome':$("#DistanceFromHome").val(),
+            'Education':$("#Education").val(), 'EnvironmentSatisfaction':$("#EnvironmentSatisfaction").val(),
+            'JobInvolvement':$("#JobInvolvement").val(), 'JobLevel':$("#JobLevel").val(),
+            'JobSatisfaction':$("#JobSatisfaction").val(), 'MonthlyIncome':$("#MonthlyIncome").val(),
+            'NumCompaniesWorked':$("#NumCompaniesWorked").val(), 'OverTime':$("#OverTime").val(),
+            'RelationshipSatisfaction':$("#RelationshipSatisfaction").val(), 'StockOptionLevel':$("#StockOptionLevel").val(),
+            'TotalWorkingYears':$("#TotalWorkingYears").val(),
+            'TrainingTimesLastYear':$("#TrainingTimesLastYear").val(), 'WorkLifeBalance':$("#WorkLifeBalance").val(),
+            'YearsAtCompany':$("#YearsAtCompany").val(), 'YearsSinceLastPromotion':$("#YearsSinceLastPromotion").val(),
+            'Department':$("#Department").val(), 'EducationField':$("#EducationField").val(),
+            'Gender':$("#Gender").val(), 'JobRole':$("#JobRole").val(), 'MaritalStatus':$("#MaritalStatus").val()
+            }
               $.ajax({
                   data: JSON.stringify(data),
                   contentType: "application/json",
@@ -105,7 +117,14 @@
                   type: 'POST',
                   dataType: 'json',
                   success: function (response) {
-                        console.log('ok')
+                        let alert = $('#alert')
+                        if (response.prediction){
+                        alert.text("Сотрудник не задержится")
+                        }
+                        else{
+                            alert.text("Сотрудник задержится")
+                        }
+                        alert.show()
                   },
               });
               return false;
@@ -119,7 +138,7 @@
 /* Bordered form */
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=number] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
