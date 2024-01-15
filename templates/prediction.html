@@ -7,81 +7,147 @@
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <form id="ml_form" method="POST">
     <div class="container">
-        <h1 style="color:#478448">Предсказание</h1>
+        <h1 style="color:#478448">Предсказание</h1>  <br>
+        <h3 style="color:#478448">Личная информация о сотруднике</h3> <br>
       <p>Возраст:</p>
-      <input type="number" id="Age">
-      <br>
-      <p>:</p>
-      <input type="text" id="BusinessTravel">
-      <br>
-      <p>Дистанция до дома:</p>
-      <input type="number" id="DistanceFromHome">
-      <br>
-      <p>Образование:</p>
-      <input type="text" id="Education">
-      <br>
-      <p>Удовлетворенность окружением:</p>
-      <input type="number" id="EnvironmentSatisfaction">
-      <br>
-      <p>Вовлечение в работу:</p>
-      <input type="number" id="JobInvolvement">
-      <br>
-      <p>Уровень работы:</p>
-      <input type="number" id="JobLevel">
-      <br>
-      <p>Удовлетвореность работой:</p>
-      <input type="number" id="JobSatisfaction">
-      <br>
-      <p>Зарплата:</p>
-      <input type="number" id="MonthlyIncome">
-      <br>
-      <p>Количество мест работы:</p>
-      <input type="number" id="NumCompaniesWorked">
-      <br>
-      <p>Переработки:</p>
-      <input type="text" id="OverTime">
-      <br>
-      <p>Удовлетворенность отношениями:</p>
-      <input type="number" id="RelationshipSatisfaction">
-      <br>
-      <p>:</p>
-      <input type="number" id="StockOptionLevel">
-      <br>
-      <p>Общий Стаж:</p>
-      <input type="number" id="TotalWorkingYears">
-      <br>
-      <p>:</p>
-      <input type="number" id="TrainingTimesLastYear">
-      <br>
-      <p>:</p>
-      <input type="number" id="WorkLifeBalance">
-      <br>
-      <p>Лет в компании:</p>
-      <input type="number" id="YearsAtCompany">
-      <br>
-      <p>Лет с последнего повышения:</p>
-      <input type="number" id="YearsSinceLastPromotion">
-      <br>
-      <p>Департамент:</p>
-      <input type="text" id="Department">
-      <br>
-      <p>Область образования:</p>
-      <input type="text" id="EducationField">
-      <br>
-      <p>Пол:</p>
-      <input type="text" id="Gender">
-      <br>
-      <p>Должность:</p>
-      <input type="text" id="JobRole">
-      <br>
-      <p>Женатность:</p>
-      <input type="text" id="MaritalStatus">
+      <input type="number" value="28" id="Age">
       <br>
 
+      <label for="Gender">Пол:</label>
+      <select id="Gender" name="Gender">
+        <option value="Male" selected>Мужчина</option>
+        <option value="Female">Женщина</option>
+      </select>
+
+      <br> 
+      <!-- <p>Семейное положение:</p> -->
+      <label for="MaritalStatus">Семейное положение:</label>
+      <!-- <input type="text" value="28" id="MaritalStatus"> -->
+      <select id="MaritalStatus" name="MaritalStatus">
+        <option value="Married" selected>В браке</option>
+        <option value="Single">Никогда не был(а) в браке</option>
+        <option value="Divorced">В разводе</option>
+      </select>
+      <br>
+
+      <p>Область образования:</p>
+      <!-- <input type="text" value="28" id="EducationField"> -->
+      <select id="EducationField" name="EducationField">
+        <option value="Life Sciences" selected>Естественные науки, математика, статистика</option>
+        <option value="Medical">Здравохранение и социальное обеспечение</option>
+        <option value="Marketing">Маркетинг и менеджмент</option>
+        <option value="Technical Degree">Информационно-коммуникационные технологии</option>
+        <option value="Human Resources">Социальные науки, журналистика, информация</option>
+        <option value="Other">Другое</option>
+      </select>
+      <br>
+
+      <p>Уровень образования:</p>
+      <!-- <input type="text" value="28" id="Education"> -->
+      <select id="Education" name="Education">
+        <option value="Below College">Срреднее общее</option>
+        <option value="College">Среднее профессиональное</option>
+        <option value="Bachelor">Бакалавриат</option>
+        <option value="Master" selected>Магистратура, специалиет</option>
+        <option value="Doctor">Кандидат/доктор наук</option>
+      </select>
+      <br>
+      <p>Общий стаж работы:</p>
+      <input type="number" value="5" id="TotalWorkingYears">
+      <br>
+      <p>Количество мест работы:</p>
+      <input type="number" value="3" id="NumCompaniesWorked">
+      <br>
+      <br>
+
+
+      <h3 style="color:#478448">Информация о рабочем месте сотрудника</h3> <br>
+
+      <p>Департамент:</p>
+      <!-- <input type="text" value="28" id="Department"> -->
+      <select id="Department" name="Department">
+        <option value="Sales" selected>Продажи</option>
+        <option value="Research & Development">Исследования и разработки</option>
+        <option value="Human Resources">Человеческие ресурсы</option>
+        <option value="Other">Другое</option>
+      </select>
+      <br>
+      <p>Должность:</p>
+      <!-- <input type="text" value="28" id="JobRole"> -->
+      <select id="JobRole" name="JobRole">
+        <option value="Sales Executive" selected>Маркетолог</option>
+        <option value="Research Scientist">Специалист по иннформационной безопасности</option>
+        <option value="Laboratory Technician">Разработчик/тестировщик</option>
+        <option value="Manufacturing Director">Технический директор</option>
+        <option value="Healthcare Representative">Аналитик</option>
+        <option value="Manager">Менеджер</option>
+        <option value="Sales Representative">Специалист по продажам</option>
+        <option value="Research Director">Специалист по финансам</option>
+        <option value="Human Resources">Специалист по человеческим ресурсам</option>
+      </select>
+      <br>
+      <p>Уровень должноси:</p>
+      <!-- <input type="number" value="28" id="JobLevel"> -->
+      <select id="JobLevel" name="JobLevel">
+        <option value="trainee">Стажер</option>
+        <option value="specialist">Специалист</option>
+        <option value="leading specialist" selected>Ведущий специалист</option>
+        <option value="manager">Руководиель</option>
+        <option value="director">Директор</option>
+      </select>
+      <br>
+      <p>Кол-во лет в текущей компании:</p>
+      <input type="number" value="2" id="YearsAtCompany">
+      <br>
+      <p>Кол-во лет с последнего повышения:</p>
+      <input type="number"  value="1"  id="YearsSinceLastPromotion">
+      <br>
+      <p>Частота деловых поездок:</p>
+      <!-- <input type="text" value="28" id="BusinessTravel"> -->
+      <select id="BusinessTravel" name="BusinessTravel">
+        <option value="Non-Travel" selected>Нет поездок</option>
+        <option value="Travel_Rarely">Есть редкие поездки</option>
+        <option value="Travel_Frequently">Частые поездки</option>
+      </select>
+      <br>
+      <p>Переработки:</p>
+      <!-- <input type="text" value="28" id="OverTime"> -->
+      <select id="OverTime" name="OverTime">
+        <option value="Yes" selected>Есть</option>
+        <option value="No">Нет</option>
+      </select>
+      <br>
+      <p>Зарплата ($):</p>
+      <input type="number" value="3800" id="MonthlyIncome">
+      <br>
+      <p>Расстояние от дома до офиса (км):</p>
+      <input type="number" value="10" id="DistanceFromHome">
+      <br>
+      <p>Уровень корпоративных скидок (1- Низкий, 3 - Высокий):</p>
+      <input type="number" value="3" id="StockOptionLevel">
+      <br>
+      <p>Кол-во пройденных курсов за прошлый год:</p>
+      <input type="number" value="1" id="TrainingTimesLastYear">
+      <br>
+      <p>Удовлетворенность окружением (1- Низкое, 4 - Очень высокое):</p>
+      <input type="number" value="2" id="EnvironmentSatisfaction">
+      <br>
+      <p>Вовлечение в работу (1- Низкое, 4 - Очень высокое):</p>
+      <input type="number" value="3" id="JobInvolvement">
+      <br>
+      <p>Удовлетвореность работой (1- Низкое, 4 - Очень высокое):</p>
+      <input type="number" value="3" id="JobSatisfaction">
+      <br>
+      <p>Удовлетворенность коммуникацией с коллегами (1- Низкое, 4 - Очень высокое):</p>
+      <input type="number" value="4" id="RelationshipSatisfaction">
+      <br>
+      <p>Баланс между работой и личной жизнью (1- Низкое, 4 - Очень высокое):</p>
+      <input type="number" value="4"  id="WorkLifeBalance">
+      <br>
       <button type="submit" value="Predict">Предсказать увольнение</button>
     </div>
     </form>
-    <div class="container" id="alert" style="display:none;"></div>
+    <div class="container"  id="alert" style="display:none;"></div>
   </body>
 
     {% block scripts %}
@@ -111,7 +177,7 @@
             'Gender':$("#Gender").val(), 'JobRole':$("#JobRole").val(), 'MaritalStatus':$("#MaritalStatus").val()
             }
               $.ajax({
-                  data: JSON.stringify(data),
+                  data: JSON.stringify(data),                  
                   contentType: "application/json",
                   url: "{% url 'result' %}",
                   type: 'POST',
@@ -119,12 +185,13 @@
                   success: function (response) {
                         let alert = $('#alert')
                         if (response.prediction){
-                        alert.text("Сотрудник не задержится")
+                        alert.text("Сотрудник уволится")
                         }
                         else{
-                            alert.text("Сотрудник задержится")
+                            alert.text("Сотрудник останется в компании")
                         }
                         alert.show()
+                        console.log(data)
                   },
               });
               return false;
@@ -169,6 +236,28 @@ button:hover {
   padding: 0 15px;
 }
 
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
 @media (min-width: 375.98px){
   .container {
     max-width: 340px;
@@ -193,6 +282,11 @@ button:hover {
   .container {
     max-width: 740px;
   }
+
 }
+
+
 </style>
+
+
 {% endblock content %}

@@ -45,6 +45,13 @@ MAP_EDUCATION = [
     }
 ]
 
+MAP_JOBLEVEL = [
+    {
+        'col': 'JobLevel',
+        'mapping': {'trainee': 1, 'specialist': 2, 'leading specialist': 3, 'manager': 4, 'director': 5},
+    }
+]
+
 
 def fill_dummies(x, enum, key):
     res = [0 for _ in range(len(enum))]
@@ -100,6 +107,7 @@ def set_data(data):
     df['BusinessTravel'] = fit_oe(df['BusinessTravel'], MAP_BUSINESS)
     df['OverTime'] = fit_oe(df['OverTime'], MAP_OVERTIME)
     df['Education'] = fit_oe(df['Education'], MAP_EDUCATION)
+    df['JobLevel'] = fit_oe(df['JobLevel'], MAP_JOBLEVEL)
     return df[
         [
             'Age',
@@ -168,7 +176,6 @@ def validate_data(data):
         "DistanceFromHome",
         "EnvironmentSatisfaction",
         "JobInvolvement",
-        "JobLevel",
         "JobSatisfaction",
         "MonthlyIncome",
         "NumCompaniesWorked",
@@ -190,7 +197,6 @@ def validate_data(data):
 def post_result(request):
     data = loads(request.body)
     validate_data(data)
-    res = get_prediction(data)
     res = get_prediction(data)
     return JsonResponse({'prediction': res})
 
